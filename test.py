@@ -63,7 +63,7 @@ class TestBooksCollector():
     def test_get_books_genre_with_existing_book_and_no_genre(self, collector:BooksCollector, books_type:dict):
         collector.add_new_book(books_type.get('valid'))
 
-        assert collector.get_book_genre(books_type.get('valid')) == ''
+        assert collector.get_books_genre() == {books_type.get('valid'): ''}
 
     @pytest.mark.parametrize('genre', ['Ужасы', 'Детективы'])
     def test_get_books_for_children_genre_with_age_rating(self, collector:BooksCollector, books_type:dict, genre):
@@ -90,7 +90,7 @@ class TestBooksCollector():
         collector.add_new_book(books_type.get('valid'))
         collector.add_book_in_favorites(books_type.get('valid'))
 
-        assert len(collector.favorites) == 1
+        assert collector.favorites == [books_type.get('valid')]
 
 
     
